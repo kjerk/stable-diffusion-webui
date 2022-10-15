@@ -162,12 +162,15 @@ def diffuse_post():
     print(f'Diffusing: [yellow]{override_params["prompt"]}[/]')
     return run_diffusion(diffuse_settings_default.copy(), override_params)
 
-def run_diffusion(diffuse_settings, override_params):
+def run_diffusion(diffuse_settings: dict, override_params: dict = None):
     """
     Helper to cut down on boilerplate.
     diffuse_settings: dict of key/value pairs of diffusion settings.
     override_params: dict of key/value pairs that overwrite values in diffuse_settings if matching.
     """
+    if override_params is None:
+        override_params = {}
+    
     # Override defaults in diffuse_settings if payload key name matches
     for k, v in override_params.items():
         if k in diffuse_settings:
