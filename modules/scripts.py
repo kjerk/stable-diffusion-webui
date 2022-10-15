@@ -145,7 +145,10 @@ class ScriptRunner:
         return inputs
 
     def run(self, p: StableDiffusionProcessing, *args):
-        script_index = args[0]
+        if args is None or len(args) == 0:
+            script_index = 0
+        else:
+            script_index = args[0]
 
         if script_index == 0:
             return None
